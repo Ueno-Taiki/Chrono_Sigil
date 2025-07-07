@@ -14,6 +14,7 @@ void GameScene::Initialize() {
 
 	// 3Dモデルデータの生成
 	modelPlayer_ = Model::CreateFromOBJ("player", true);
+	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
 
 	// ファイル名を指定してテクスチャを読み込む
 
@@ -21,9 +22,16 @@ void GameScene::Initialize() {
 	// プレイヤーの生成
 	player_ = new Player();
 	// プレイヤーの座標
-	Vector3 positon = { -18, 0, -20 };
+	Vector3 playerPositon = { -18, 0, -20 };
 	// プレイヤーの初期化
-	player_->Initialize(modelPlayer_, positon);
+	player_->Initialize(modelPlayer_, playerPositon);
+
+	// 敵の生成
+	enemy_ = new Enemy();
+	// 敵の座標
+	Vector3 enemyPositon = { 15, 0, -20 };
+	// 駅の初期化
+	enemy_->Initialize(modelEnemy_, enemyPositon);
 
 	// スプライトの生成
 
@@ -38,6 +46,9 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	// プレイヤー更新
 	player_->Update();
+
+	// 敵更新
+	enemy_->Update();
 
 	// 行列を更新
 	worldTransfrom_.UpdateMatrix();
@@ -62,8 +73,12 @@ void GameScene::Draw() {
 	Model::PreDraw(dxCommon->GetCommandList());
 
 	// ここに3Dモデルインスタンスの描画処理を記述する
+
+	// プレイヤー描画
 	player_->Draw(camera_);
 
+	//敵描画
+	enemy_->Draw(camera_);
 
 	// 3Dモデル描画後処理
 	Model::PostDraw();
