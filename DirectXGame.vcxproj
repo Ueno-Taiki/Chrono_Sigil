@@ -107,7 +107,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Code\GameScene.cpp" />
+    <ClCompile Include="Code\Player.cpp" />
     <ClCompile Include="Code\TitleScene.cpp" />
+    <ClCompile Include="Code\WorldTransfoemEx.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -187,8 +189,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\GameScene.h" />
+    <ClInclude Include="Code\Player.h" />
     <ClInclude Include="Code\TitleScene.h" />
-    <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

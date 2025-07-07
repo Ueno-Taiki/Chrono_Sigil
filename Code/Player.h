@@ -1,19 +1,16 @@
 #pragma once
 #include "KamataEngine.h"
-#include "Player.h"
 
-class GameScene {
+class Player {
 public:
-	~GameScene();
-
 	// 初期化
-	void Initialize();
+	void Initialize(KamataEngine::Model* model, const KamataEngine::Vector3& position);
 
 	// 更新
 	void Update();
 
 	// 描画
-	void Draw();
+	void Draw(KamataEngine::Camera& camera);
 
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
@@ -22,13 +19,7 @@ private:
 
 	// ワールドトランスフォーム
 	KamataEngine::WorldTransform worldTransfrom_;
-
-	// カメラ
-	KamataEngine::Camera camera_;
-
-	// プレイヤー
-	Player* player_ = nullptr;
-	// プレイヤーモデル
-	KamataEngine::Model* modelPlayer_ = nullptr;
+	// モデル
+	KamataEngine::Model* model_ = nullptr;
 };
 
