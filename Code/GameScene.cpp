@@ -5,6 +5,7 @@ using namespace KamataEngine;
 GameScene::~GameScene() {
 	// 解放処理
 	delete modelPlayer_;
+	delete modelEnemy_;
 }
 
 void GameScene::Initialize() {
