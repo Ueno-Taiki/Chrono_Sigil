@@ -6,6 +6,7 @@ GameScene::~GameScene() {
 	// 解放処理
 	delete modelPlayer_;
 	delete modelEnemy_;
+	delete modelSkydome_;
 }
 
 void GameScene::Initialize() {
@@ -16,6 +17,7 @@ void GameScene::Initialize() {
 	// 3Dモデルデータの生成
 	modelPlayer_ = Model::CreateFromOBJ("player", true);
 	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
+	modelSkydome_ = Model::CreateFromOBJ("SkyDome", true);
 
 	// ファイル名を指定してテクスチャを読み込む
 
@@ -34,10 +36,16 @@ void GameScene::Initialize() {
 	// 駅の初期化
 	enemy_->Initialize(modelEnemy_, enemyPositon);
 
+	// 天球の生成
+	skydome_ = new Skydome();
+	// 天球の初期化
+	skydome_->Initialize(modelSkydome_);
+
 	// スプライトの生成
 
 
 	// カメラの初期化
+	camera_.farZ = 600;
 	camera_.Initialize();
 
 	// ワールド変数の初期化
@@ -78,8 +86,11 @@ void GameScene::Draw() {
 	// プレイヤー描画
 	player_->Draw(camera_);
 
-	//敵描画
+	// 敵描画
 	enemy_->Draw(camera_);
+
+	// 天球描画
+	skydome_->Draw(camera_);
 
 	// 3Dモデル描画後処理
 	Model::PostDraw();
