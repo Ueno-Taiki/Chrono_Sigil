@@ -3,10 +3,6 @@
 using namespace KamataEngine;
 
 GameScene::~GameScene() {
-	// 解放処理
-	delete modelPlayer_;
-	delete modelEnemy_;
-	delete modelSkydome_;
 	// 音声停止
 	audio_->StopWave(voiceHandle_);
 }
@@ -17,31 +13,31 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	// 3Dモデルデータの生成
-	modelPlayer_ = Model::CreateFromOBJ("player", true);
-	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
-	modelSkydome_ = Model::CreateFromOBJ("SkyDome", true);
+	modelPlayer_.reset(Model::CreateFromOBJ("player", true));
+	modelEnemy_.reset(Model::CreateFromOBJ("enemy", true));
+	modelSkydome_.reset(Model::CreateFromOBJ("SkyDome", true));
 
 	// BGM・SE読み込み
 	BGM = audio_->LoadWave("BGM/BGM.wav");
 
 	// プレイヤーの生成
-	player_ = new Player();
+	player_ = std::make_unique<Player>();
 	// プレイヤーの座標
 	Vector3 playerPositon = { -18, 0, -20 };
 	// プレイヤーの初期化
-	player_->Initialize(modelPlayer_, playerPositon);
+	player_->Initialize(modelPlayer_.get(), playerPositon);
 
 	// 敵の生成
-	enemy_ = new Enemy();
+	enemy_ = std::make_unique<Enemy>();
 	// 敵の座標
 	Vector3 enemyPositon = { 15, 0, -20 };
 	// 駅の初期化
-	enemy_->Initialize(modelEnemy_, enemyPositon);
+	enemy_->Initialize(modelEnemy_.get(), enemyPositon);
 
 	// 天球の生成
-	skydome_ = new Skydome();
+	skydome_ = std::make_unique<Skydome>();
 	// 天球の初期化
-	skydome_->Initialize(modelSkydome_);
+	skydome_->Initialize(modelSkydome_.get());
 
 	// カメラの初期化
 	camera_.farZ = 600;

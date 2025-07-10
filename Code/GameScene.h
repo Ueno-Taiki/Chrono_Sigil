@@ -1,4 +1,6 @@
 #pragma once
+
+#include <memory>
 #include "KamataEngine.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -29,19 +31,19 @@ private:
 	KamataEngine::Camera camera_;
 
 	// プレイヤー
-	Player* player_ = nullptr;
+	std::unique_ptr<Player> player_;
 	// プレイヤーモデル
-	KamataEngine::Model* modelPlayer_ = nullptr;
+	std::unique_ptr<KamataEngine::Model> modelPlayer_;
 
 	// 敵
-	Enemy* enemy_ = nullptr;
+	std::unique_ptr<Enemy> enemy_;
 	// 敵モデル
-	KamataEngine::Model* modelEnemy_ = nullptr;
+	std::unique_ptr<KamataEngine::Model> modelEnemy_;
 
 	// 天球
-	Skydome* skydome_ = nullptr;
+	std::unique_ptr<Skydome> skydome_;
 	// 天球モデル
-	KamataEngine::Model* modelSkydome_ = nullptr;
+	std::unique_ptr<KamataEngine::Model> modelSkydome_;
 
 	// サウンドデータハンドル
 	uint32_t BGM = 0;
