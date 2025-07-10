@@ -7,6 +7,8 @@ GameScene::~GameScene() {
 	delete modelPlayer_;
 	delete modelEnemy_;
 	delete modelSkydome_;
+	// 音声停止
+	audio_->StopWave(voiceHandle_);
 }
 
 void GameScene::Initialize() {
@@ -19,8 +21,8 @@ void GameScene::Initialize() {
 	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
 	modelSkydome_ = Model::CreateFromOBJ("SkyDome", true);
 
-	// ファイル名を指定してテクスチャを読み込む
-
+	// BGM・SE読み込み
+	BGM = audio_->LoadWave("BGM/BGM.wav");
 
 	// プレイヤーの生成
 	player_ = new Player();
@@ -41,12 +43,12 @@ void GameScene::Initialize() {
 	// 天球の初期化
 	skydome_->Initialize(modelSkydome_);
 
-	// スプライトの生成
-
-
 	// カメラの初期化
 	camera_.farZ = 600;
 	camera_.Initialize();
+
+	// 音声再生
+	voiceHandle_ = audio_->PlayWave(BGM, true);
 
 	// ワールド変数の初期化
 	worldTransfrom_.Initialize();

@@ -3,17 +3,10 @@
 
 class Skydome {
 public:
-	// 初期化
 	void Initialize(KamataEngine::Model* model);
 
-	/// <summary>
-	/// 毎フレーム処理
-	/// </summary>
 	void Update();
 
-	/// <summary>
-	/// 描画
-	/// </summary>
 	void Draw(KamataEngine::Camera& camera);
 
 private:  

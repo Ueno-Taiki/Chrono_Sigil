@@ -42,5 +42,11 @@ private:
 	Skydome* skydome_ = nullptr;
 	// 天球モデル
 	KamataEngine::Model* modelSkydome_ = nullptr;
+
+	// サウンドデータハンドル
+	uint32_t BGM = 0;
+
+	// 音声再生ハンドル
+	uint32_t voiceHandle_ = 0;
 };
 

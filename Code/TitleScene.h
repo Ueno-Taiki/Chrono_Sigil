@@ -16,12 +16,18 @@ private:
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
 
-	//ワールドトランスフォーム
+	// ワールドトランスフォーム
 	KamataEngine::WorldTransform worldTransfrom_;
 	
-	//テクスチャハンドル
+	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
 
-	//スプライト
+	// スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
+
+	// サウンドデータハンドル
+	uint32_t GameStart = 0;
+
+	// 音声再生ハンドル
+	uint32_t voiceHandle_ = 0;
 };

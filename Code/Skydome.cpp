@@ -15,6 +15,6 @@ void Skydome::Initialize(KamataEngine::Model* model) {
 void Skydome::Update() {}
 
 void Skydome::Draw(KamataEngine::Camera& camera) {
-	//3Dモデル描画
+	// 3Dモデル描画
 	model_->Draw(worldTransfrom_, camera);
 }
