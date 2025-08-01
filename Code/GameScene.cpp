@@ -31,8 +31,13 @@ void GameScene::Initialize() {
 	enemy_ = std::make_unique<Enemy>();
 	// 敵の座標
 	Vector3 enemyPositon = { 15, 0, -20 };
-	// 駅の初期化
+	// 敵の初期化
 	enemy_->Initialize(modelEnemy_.get(), enemyPositon);
+
+	// カードの生成
+	card_ = std::make_unique<Card>();
+	// カードの初期化
+	card_->Initialize();
 
 	// 天球の生成
 	skydome_ = std::make_unique<Skydome>();
@@ -56,6 +61,9 @@ void GameScene::Update() {
 
 	// 敵更新
 	enemy_->Update();
+
+	// カード更新
+	card_->Update();
 
 	// 行列を更新
 	worldTransfrom_.UpdateMatrix();
@@ -98,6 +106,8 @@ void GameScene::Draw() {
 
 	// ここに2Dスプライトの描画処理を記述する
 
+	// カード描画
+	card_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
