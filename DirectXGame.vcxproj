@@ -112,6 +112,7 @@
     <ClCompile Include="Code\Player.cpp" />
     <ClCompile Include="Code\Skydome.cpp" />
     <ClCompile Include="Code\TitleScene.cpp" />
+    <ClCompile Include="Code\UI.cpp" />
     <ClCompile Include="Code\WorldTransfoemEx.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -197,6 +198,7 @@
     <ClInclude Include="Code\Player.h" />
     <ClInclude Include="Code\Skydome.h" />
     <ClInclude Include="Code\TitleScene.h" />
+    <ClInclude Include="Code\UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
