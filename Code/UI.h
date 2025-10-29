@@ -17,6 +17,9 @@ public:
 	// 星の表示を更新
 	void Star();
 
+	// 攻撃選択の種類
+	void Type();
+
 	// 一時停止の判定
 	void Pause();
 
@@ -34,11 +37,18 @@ private:
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
 
+	// 攻撃判別
+	enum Attack {
+		NormalAttack,
+		Skill
+	};
+	Attack attack = NormalAttack;
+
 	// ワールドトランスフォーム
 	KamataEngine::WorldTransform worldTransfrom_;
 
 	// テクスチャハンドル
-	uint32_t textureHandle_[6];
+	uint32_t textureHandle_[8];
 
 	// 数字用スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
@@ -48,6 +58,9 @@ private:
 
 	// 一時停止ボタン用スプライト
 	KamataEngine::Sprite* spritePause_[3];
+
+	// 攻撃・スキル
+	KamataEngine::Sprite* SpriteAttack_[2];
 
 	// SP
 	int sp = 3;
