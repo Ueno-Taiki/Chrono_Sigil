@@ -11,6 +11,9 @@ public:
 
 	void Draw();
 
+	// 操作入力
+	void Input();
+
 	// 数字用処理
 	void Number();
 
@@ -25,7 +28,7 @@ public:
 
 	// カーソル移動
 	void MoveC();
-
+	
 	// UI起動のgetter
 	bool IsActive() const { return Uiflag; }
 
@@ -76,6 +79,9 @@ private:
 
 	// カーソル
 	int moveC = 0;
+
+	// マウスクリックカウント
+	int mouseCount = 0;
 
 	// UI起動フラグ
 	bool Uiflag = false;

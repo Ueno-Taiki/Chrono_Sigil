@@ -63,6 +63,9 @@ void UI::Initialize() {
 }
 
 void UI::Update() { 
+	// 操作入力
+	Input();
+
 	// 数字用処理
 	Number();
 
@@ -111,6 +114,45 @@ void UI::Draw() {
 	Sprite::PostDraw();
 	// 深度バッファクリア
 	dxCommon_->ClearDepthBuffer();
+}
+
+// 操作入力
+void UI::Input() { 
+	// ボタンで攻撃選択
+	if (!Uiflag && input_->TriggerKey(DIK_Q)) {
+		audio_->PlayWave(Click, false);
+		attack = NormalAttack;
+	}
+	if (!Uiflag && input_->TriggerKey(DIK_E)) {
+		audio_->PlayWave(Click, false);
+		attack = Skill;
+	}
+
+	// マウスで攻撃選択
+	if (!Uiflag && Input::GetInstance()->IsTriggerMouse(1)) {
+		audio_->PlayWave(Click, false);
+
+		// 右クリするたんびに切り替え
+		mouseCount++;
+
+		// 2回目のクリックでリセット
+		if (mouseCount > 1) {
+			mouseCount = 0;
+		}
+
+		// 状態を切り替える
+		if (mouseCount == 0) {
+			attack = NormalAttack;
+		} else {
+			attack = Skill;
+		}
+	}
+
+	// 設定開く
+	if (input_->TriggerKey(DIK_ESCAPE)) {
+		audio_->PlayWave(Click, false);
+		Uiflag = true;
+	}
 }
 
 // 数字用処理
