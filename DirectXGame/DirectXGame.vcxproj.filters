@@ -16,34 +16,43 @@
     <Filter Include="シェーダー ファイル">
       <UniqueIdentifier>{718c7f4c-fc51-40ad-a221-b9456a7a1a3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\3D">
+      <UniqueIdentifier>{3f698d5d-26ea-4d81-9b37-5b3d582d1aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\2D">
+      <UniqueIdentifier>{dda71ad6-31e3-47b2-9f3d-97138d648b5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene">
+      <UniqueIdentifier>{34f6eb83-d8b3-4ac6-9aa6-1a353f920836}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\GameScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\TitleScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Code\WorldTransfoemEx.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Code\Enemy.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Player.cpp">
+      <Filter>ソース ファイル\3D</Filter>
     </ClCompile>
     <ClCompile Include="Code\Skydome.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\3D</Filter>
     </ClCompile>
     <ClCompile Include="Code\Card.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\2D</Filter>
     </ClCompile>
     <ClCompile Include="Code\UI.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\TitleScene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameScene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
