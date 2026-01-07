@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Skydome.h"
+#include "Card.h"
 
 class GameScene {
 public:
@@ -39,6 +40,9 @@ private:
 	std::unique_ptr<Enemy> enemy_;
 	// 敵モデル
 	std::unique_ptr<KamataEngine::Model> modelEnemy_;
+
+	// カード
+	std::unique_ptr<Card> card_;
 
 	// 天球
 	std::unique_ptr<Skydome> skydome_;
