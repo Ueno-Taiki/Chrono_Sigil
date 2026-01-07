@@ -2,6 +2,7 @@
 #include "KamataEngine.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Skydome.h"
 
 class GameScene {
 public:
@@ -36,5 +37,10 @@ private:
 	Enemy* enemy_ = nullptr;
 	// 敵モデル
 	KamataEngine::Model* modelEnemy_ = nullptr;
+
+	// 天球
+	Skydome* skydome_ = nullptr;
+	// 天球モデル
+	KamataEngine::Model* modelSkydome_ = nullptr;
 };
 
