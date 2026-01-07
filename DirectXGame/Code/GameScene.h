@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Player.h"
+#include "Enemy.h"
 
 class GameScene {
 public:
@@ -30,5 +31,10 @@ private:
 	Player* player_ = nullptr;
 	// プレイヤーモデル
 	KamataEngine::Model* modelPlayer_ = nullptr;
+
+	// 敵
+	Enemy* enemy_ = nullptr;
+	// 敵モデル
+	KamataEngine::Model* modelEnemy_ = nullptr;
 };
 
