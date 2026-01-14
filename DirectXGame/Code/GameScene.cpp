@@ -39,6 +39,11 @@ void GameScene::Initialize() {
 	// カードの初期化
 	card_->Initialize();
 
+	// UIの生成
+	ui_ = std::make_unique<UI>();
+	// UIの初期化
+	ui_->Initialize();
+
 	// 天球の生成
 	skydome_ = std::make_unique<Skydome>();
 	// 天球の初期化
@@ -65,6 +70,9 @@ void GameScene::Update() {
 	// カード更新
 	card_->Update();
 
+	// UI更新
+	ui_->Update();
+
 	// 行列を更新
 	worldTransfrom_.UpdateMatrix();
 }
@@ -77,7 +85,6 @@ void GameScene::Draw() {
 	Sprite::PreDraw(dxCommon->GetCommandList());
 
 	// ここに2Dスプライトの描画処理を記述する
-
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
@@ -108,6 +115,9 @@ void GameScene::Draw() {
 
 	// カード描画
 	card_->Draw();
+
+	// UI描画
+	ui_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();

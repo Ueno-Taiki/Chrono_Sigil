@@ -29,11 +29,11 @@ void Card::Initialize() {
 	}
 
 	// 固定配置
-	sprite_[0]->SetPosition({ 20, 460 });
-	sprite_[1]->SetPosition({ 180, 460 });
-	sprite_[2]->SetPosition({ 340, 460 });
-	sprite_[3]->SetPosition({ 500, 460 });
-	sprite_[4]->SetPosition({ 660, 460 });
+	sprite_[0]->SetPosition({ 0, 600 });
+	sprite_[1]->SetPosition({ 80, 600 });
+	sprite_[2]->SetPosition({ 160, 600 });
+	sprite_[3]->SetPosition({ 240, 600 });
+	sprite_[4]->SetPosition({ 320, 600 });
 }
 
 void Card::Update() { 

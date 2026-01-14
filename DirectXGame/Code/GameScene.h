@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Skydome.h"
 #include "Card.h"
+#include "UI.h"
 
 class GameScene {
 public:
@@ -43,6 +44,9 @@ private:
 
 	// カード
 	std::unique_ptr<Card> card_;
+
+	// UI
+	std::unique_ptr<UI> ui_;
 
 	// 天球
 	std::unique_ptr<Skydome> skydome_;
