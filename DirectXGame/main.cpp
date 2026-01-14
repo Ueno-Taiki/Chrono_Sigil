@@ -3,12 +3,16 @@
 #include "Code/TitleScene.h"
 #include "Code/GameScene.h"
 #include "Code/UI.h"
+#include "Code/GameClear.h"
+#include "Code/GameOver.h"
 
 using namespace KamataEngine;
 
 TitleScene* titleScene = nullptr;
 GameScene* gameScene = nullptr;
 UI* ui = nullptr;
+GameClear* gameClear = nullptr;
+GameOver* gameOver = nullptr;
 
 // シーン
 enum class Scene {
@@ -16,7 +20,9 @@ enum class Scene {
 	kUnknown = 0,
 
 	kTitle,
-	kGame
+	kGame,
+	kGameClear,
+	kGameOver
 };
 
 // 現在シーン
@@ -70,6 +76,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	delete titleScene;
 	delete gameScene;
 	delete ui;
+	delete gameClear;
+	delete gameOver;
 
 	// エンジンの終了処理
 	KamataEngine::Finalize();
@@ -81,7 +89,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 void ChangeScene() {
 	switch (scene) {
 		case Scene::kTitle:
-		if (Input::GetInstance()->TriggerKey(DIK_RETURN)) {
+		if (Input::GetInstance()->IsTriggerMouse(0)) {
 			// シーンの変更
 			scene = Scene::kGame;
 			// 旧シーンの解放
@@ -108,6 +116,56 @@ void ChangeScene() {
 			titleScene = new TitleScene();
 			titleScene->Initialize();
 		}
+		// 勝った時
+		else if (gameScene->IsCleared()) {
+			// シーンの変更
+			scene = Scene::kGameClear;
+			// 旧シーンの解放
+			delete gameScene;
+			gameScene = nullptr;
+			delete ui;
+			ui = nullptr;
+			// 新シーンの生成と初期化
+			gameClear = new GameClear();
+			gameClear->Initialize();
+		}
+		// 死んだ時
+		else if (gameScene->IsDead()) {
+			// シーンの変更
+			scene = Scene::kGameOver;
+			// 旧シーンの解放
+			delete gameScene;
+			gameScene = nullptr;
+			delete ui;
+			ui = nullptr;
+			// 新シーンの生成と初期化
+			gameOver = new GameOver();
+			gameOver->Initialize();
+		}
+		break;
+		case Scene::kGameClear:
+		if (Input::GetInstance()->IsTriggerMouse(0)) {
+			// シーンの変更
+			scene = Scene::kTitle;
+			// 旧シーンの解放
+			delete gameClear;
+			gameClear = nullptr;
+			// 新シーンの生成と初期化
+			titleScene = new TitleScene();
+			titleScene->Initialize();
+		}
+		break;
+		case Scene::kGameOver:
+		if (Input::GetInstance()->IsTriggerMouse(0)) {
+			// シーンの変更
+			scene = Scene::kTitle;
+			// 旧シーンの解放
+			delete gameOver;
+			gameOver = nullptr;
+			// 新シーンの生成と初期化
+			titleScene = new TitleScene();
+			titleScene->Initialize();
+		}
 		break;
 	}
 }
@@ -125,6 +183,12 @@ void UpdateScene() {
 		}
 		ui->Update();
 		break;
+		case Scene::kGameClear:
+		gameClear->Update();
+		break;
+		case Scene::kGameOver:
+		gameOver->Update();
+		break;
 	}
 }
 
@@ -137,6 +201,12 @@ void DrawScene() {
 		case Scene::kGame:
 		gameScene->Draw();
 		ui->Draw();
+		break;
+		case Scene::kGameClear:
+		gameClear->Draw();
+		break;
+		case Scene::kGameOver:
+		gameOver->Draw();
 		break;
 	}
 }

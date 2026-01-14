@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 
+// 敵を処理するクラス
 class Enemy {
 public:
 	// 初期化

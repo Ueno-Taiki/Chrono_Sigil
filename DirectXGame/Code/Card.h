@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 
+// カードを処理するクラス
 class Card {
 public:
 	~Card();

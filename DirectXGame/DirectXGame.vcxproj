@@ -156,6 +156,8 @@
   <ItemGroup>
     <ClCompile Include="Code\Card.cpp" />
     <ClCompile Include="Code\Enemy.cpp" />
+    <ClCompile Include="Code\GameClear.cpp" />
+    <ClCompile Include="Code\GameOver.cpp" />
     <ClCompile Include="Code\GameScene.cpp" />
     <ClCompile Include="Code\Player.cpp" />
     <ClCompile Include="Code\Skydome.cpp" />
@@ -264,6 +266,8 @@
   <ItemGroup>
     <ClInclude Include="Code\Card.h" />
     <ClInclude Include="Code\Enemy.h" />
+    <ClInclude Include="Code\GameClear.h" />
+    <ClInclude Include="Code\GameOver.h" />
     <ClInclude Include="Code\GameScene.h" />
     <ClInclude Include="Code\Player.h" />
     <ClInclude Include="Code\Skydome.h" />

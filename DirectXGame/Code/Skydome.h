@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 
+// スカイドームを処理するクラス
 class Skydome {
 public:
 	// 初期化

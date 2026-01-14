@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 
+// プレイヤーの処理するクラス
 class Player {
 public:
 	// 初期化

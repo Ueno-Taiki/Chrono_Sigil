@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 
+// UIを処理するクラス
 class UI{
 public:
 	~UI();

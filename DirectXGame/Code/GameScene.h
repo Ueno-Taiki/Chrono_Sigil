@@ -8,6 +8,7 @@
 #include "Card.h"
 #include "UI.h"
 
+// ゲームシーンの処理するクラス
 class GameScene {
 public:
 	~GameScene();
@@ -20,6 +21,12 @@ public:
 
 	// 描画
 	void Draw();
+
+	// クリアフラグのgetter
+	bool IsCleared() const { return cleared_; }
+
+	// デスフラグのgetter
+	bool IsDead() const { return finished_; }
 
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
@@ -58,5 +65,9 @@ private:
 
 	// 音声再生ハンドル
 	uint32_t voiceHandle_ = 0;
+
+	// 終了フラグ
+	bool cleared_ = false;
+	bool finished_ = false;
 };
 
