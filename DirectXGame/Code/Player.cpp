@@ -28,3 +28,25 @@ void Player::Draw(KamataEngine::Camera& camera) {
 	// 3Dモデルを描画
 	model_->Draw(worldTransfrom_, camera);
 }
+
+// 攻撃
+void Player::Attack() { 
+	switch (attackType_) {
+		case AttackType::Normal:
+		NormalAttackHit();
+		break;
+
+		case AttackType::Skill:
+		SkillAttackHit();
+		break;
+	}
+}
+
+// 通常攻撃の判定
+void Player::NormalAttackHit() { }
+
+// スキル攻撃の判定
+void Player::SkillAttackHit() { }
+
+
+

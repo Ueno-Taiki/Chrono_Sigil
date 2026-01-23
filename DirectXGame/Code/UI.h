@@ -1,5 +1,8 @@
 #pragma once
 #include "KamataEngine.h"
+#include "Player.h"
+
+class Player;
 
 // UIを処理するクラス
 class UI{
@@ -36,17 +39,13 @@ public:
 	// ゲーム進行のgetter
 	bool IsProgress() const { return Progress; }
 
+	// 攻撃タイプのgetter
+	AttackType GetAttackType() const { return attackType_; }
+
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
-
-	// 攻撃判別
-	enum Attack {
-		NormalAttack,
-		Skill
-	};
-	Attack attack = NormalAttack;
 
 	// ワールドトランスフォーム
 	KamataEngine::WorldTransform worldTransfrom_;
@@ -83,6 +82,9 @@ private:
 
 	// マウスクリックカウント
 	int mouseCount = 0;
+
+	// 攻撃の種類
+	AttackType attackType_ = AttackType::Normal;
 
 	// UI起動フラグ
 	bool Uiflag = false;

@@ -28,3 +28,13 @@ void Enemy::Draw(KamataEngine::Camera& camera) {
 	// 3Dモデルを描画
 	model_->Draw(worldTransfrom_, camera);
 }
+
+//攻撃を受ける
+void Enemy::Hit(int damage) {
+	enemyLife = (enemyLife - damage);
+
+	//ライフが0の時死ぬ
+	if (enemyLife == 0) {
+		isDead_ = true;
+	}
+}

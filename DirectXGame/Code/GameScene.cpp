@@ -73,6 +73,24 @@ void GameScene::Update() {
 	// UI更新
 	ui_->Update();
 
+	// UIの選択をPlayerに反映
+	player_->SetAttackType(ui_->GetAttackType());
+
+	// 攻撃ボタンが押されたら
+	if (input_->TriggerKey(DIK_RETURN)) {
+		player_->Attack();
+	}
+
+	//プレイヤーが死んだ時
+	if (player_->isDead()) {
+		finished_ = true;
+	}
+
+	//敵が死んだ時
+	if (enemy_->isDead()) {
+		cleared_ = true;
+	}
+
 	// 行列を更新
 	worldTransfrom_.UpdateMatrix();
 }

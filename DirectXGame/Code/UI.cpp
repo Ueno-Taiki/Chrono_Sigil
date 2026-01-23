@@ -121,11 +121,11 @@ void UI::Input() {
 	// ボタンで攻撃選択
 	if (!Uiflag && input_->TriggerKey(DIK_Q)) {
 		audio_->PlayWave(Click, false);
-		attack = NormalAttack;
+		attackType_ = AttackType::Normal;
 	}
 	if (!Uiflag && input_->TriggerKey(DIK_E)) {
 		audio_->PlayWave(Click, false);
-		attack = Skill;
+		attackType_ = AttackType::Skill;
 	}
 
 	// マウスで攻撃選択
@@ -142,9 +142,9 @@ void UI::Input() {
 
 		// 状態を切り替える
 		if (mouseCount == 0) {
-			attack = NormalAttack;
+			attackType_ = AttackType::Normal;
 		} else {
-			attack = Skill;
+			attackType_ = AttackType::Skill;
 		}
 	}
 
@@ -187,21 +187,21 @@ void UI::Type() {
 	if (Input::GetInstance()->IsTriggerMouse(0)) {
 		if (v.x >= pos1.x && v.x <= pos1.x + 128 && v.y >= pos1.y && v.y <= pos1.y + 128) {
 			audio_->PlayWave(Click, false);
-			attack = NormalAttack;
+			attackType_ = AttackType::Normal;
 		}
 		if (v.x >= pos2.x && v.x <= pos2.x + 128 && v.y >= pos2.y && v.y <= pos2.y + 128) {
 			audio_->PlayWave(Click, false);
-			attack = Skill;
+			attackType_ = AttackType::Skill;
 		}
 	}
 
 	// 描画スプライトを切り替え
-	switch (attack) {
-		case NormalAttack:
+	switch (attackType_) {
+		case AttackType::Normal:
 		SpriteAttack_[0]->SetTextureHandle(textureHandle_[6]);
 		SpriteAttack_[1]->SetTextureHandle(textureHandle_[7]);
 		break;
-		case Skill:
+		case AttackType::Skill:
 		SpriteAttack_[0]->SetTextureHandle(textureHandle_[7]);
 		SpriteAttack_[1]->SetTextureHandle(textureHandle_[6]);
 		break;
