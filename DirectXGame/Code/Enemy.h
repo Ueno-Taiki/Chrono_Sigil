@@ -4,6 +4,8 @@
 // 敵を処理するクラス
 class Enemy {
 public:
+	~Enemy();
+
 	// 初期化
 	void Initialize(KamataEngine::Model* model, const KamataEngine::Vector3& position);
 
@@ -12,6 +14,9 @@ public:
 
 	// 描画
 	void Draw(KamataEngine::Camera& camera);
+
+	// ライフ描画
+	void LifeDraw();
 
 	//攻撃受ける
 	void Hit(int damage);
@@ -28,6 +33,12 @@ private:
 	KamataEngine::WorldTransform worldTransfrom_;
 	// モデル
 	KamataEngine::Model* model_ = nullptr;
+
+	// テクスチャハンドル
+	uint32_t textureHandle_[2];
+
+	// スプライト
+	KamataEngine::Sprite* sprite_[2];
 
 	// 敵のライフ
 	float enemyLife = 5.0f;

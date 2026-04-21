@@ -3,6 +3,12 @@
 
 using namespace KamataEngine;
 
+Player::~Player() { 
+	for (int i = 0; i < 2; i++) {
+		delete sprite_[i];
+	}
+}
+
 void Player::Initialize(KamataEngine::Model* model, const KamataEngine::Vector3& position) {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
@@ -14,6 +20,14 @@ void Player::Initialize(KamataEngine::Model* model, const KamataEngine::Vector3&
 	// 引数として受け取ったデータをメンバ変数に記録
 	model_ = model;
 	worldTransfrom_.translation_ = position;
+
+	// ファイルを指定してテクスチャを読み込む
+	textureHandle_[0] = TextureManager::Load("UI/Life1.png");
+	textureHandle_[1] = TextureManager::Load("UI/Life2.png");
+
+	// スプライト
+	sprite_[0] = Sprite::Create(textureHandle_[0], { 70, 300 });
+	sprite_[1] = Sprite::Create(textureHandle_[1], { 78, 308 });
 
 	// ワールト座標の初期化
 	worldTransfrom_.Initialize();
@@ -27,6 +41,33 @@ void Player::Update() {
 void Player::Draw(KamataEngine::Camera& camera) {
 	// 3Dモデルを描画
 	model_->Draw(worldTransfrom_, camera);
+}
+
+void Player::LifeDraw() {
+	if (playerLife == 5) {
+		sprite_[0]->Draw();
+		sprite_[1]->Draw();
+	}
+	if (playerLife == 4) {
+		sprite_[0]->Draw();
+
+	}
+	if (playerLife == 3) {
+		sprite_[0]->Draw();
+
+	}
+	if (playerLife == 2) {
+		sprite_[0]->Draw();
+
+	}
+	if (playerLife == 1) {
+		sprite_[0]->Draw();
+
+	}
+	if (playerLife == 0) {
+		sprite_[0]->Draw();
+
+	}
 }
 
 // 攻撃

@@ -11,6 +11,8 @@ class UI;
 // プレイヤーの処理するクラス
 class Player {
 public:
+	~Player();
+
 	// 初期化
 	void Initialize(KamataEngine::Model* model, const KamataEngine::Vector3& position);
 
@@ -20,6 +22,9 @@ public:
 	// 描画
 	void Draw(KamataEngine::Camera& camera);
 
+	// ライフ描画
+	void LifeDraw();
+
 	// 攻撃
 	void Attack();
 
@@ -28,6 +33,9 @@ public:
 
 	// スキル攻撃の判定
 	void SkillAttackHit();
+
+	// 攻撃受ける
+	void Hit(int damage);
 
 	// 攻撃のsetter
 	void SetAttackType(AttackType type) { attackType_ = type; }
@@ -45,8 +53,17 @@ private:
 	// モデル
 	KamataEngine::Model* model_ = nullptr;
 
+	// テクスチャハンドル
+	uint32_t textureHandle_[2];
+
+	// スプライト
+	KamataEngine::Sprite* sprite_[2];
+
 	// 攻撃の種類
 	AttackType attackType_ = AttackType::Normal;
+
+	// ライフ
+	float playerLife = 5.0f;
 
 	// デスフラグ
 	bool isDead_ = false;

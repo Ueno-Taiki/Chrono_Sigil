@@ -131,6 +131,12 @@ void GameScene::Draw() {
 
 	// ここに2Dスプライトの描画処理を記述する
 
+	// プレイヤーライフ描画
+	player_->LifeDraw();
+
+	// 敵のライフ描画
+	enemy_->LifeDraw();
+
 	// カード描画
 	card_->Draw();
 
