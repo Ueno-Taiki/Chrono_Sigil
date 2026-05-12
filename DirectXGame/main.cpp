@@ -40,7 +40,7 @@ void DrawScene();
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// エンジンの初期化
-	KamataEngine::Initialize(L"LE3D_01_ウエノ_タイキ_Chrono_Sigil");
+	KamataEngine::Initialize(L"LE4D_02_ウエノ_タイキ_Chrono_Sigil");
 
 	// DirectXCommonインスタンスの取得
 	DirectXCommon *dxCommon = DirectXCommon::GetInstance();

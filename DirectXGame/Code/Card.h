@@ -1,4 +1,6 @@
 #pragma once
+#include <array>
+#include <vector>
 #include "KamataEngine.h"
 
 // カードを処理するクラス
@@ -12,6 +14,9 @@ public:
 
 	void Draw();
 
+	// カード移動
+	void CardMove();
+
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
@@ -20,13 +25,27 @@ private:
 	// ワールドトランスフォーム
 	KamataEngine::WorldTransform worldTransfrom_;
 
-	// テクスチャハンドル
-	uint32_t textureHandle_[5];
-
-	// スプライト
-	KamataEngine::Sprite* sprite_[5];
-
 	// カードの枚数
-	static inline const int MAX = 5;
+	static inline const int CARD_NUM = 5;
+
+	// カードデータ
+	struct CardData {
+		KamataEngine::Vector2 position;
+		KamataEngine::Vector2 targetPos;
+
+		float moveSpeed;
+
+		bool isOpen;
+
+		int frontTextureIndex;
+
+		KamataEngine::Sprite* sprite;
+	};
+
+	// カード
+	CardData cards_[CARD_NUM];
+
+	// テクスチャハンドル
+	uint32_t textureHandle_[4];
 };
 
