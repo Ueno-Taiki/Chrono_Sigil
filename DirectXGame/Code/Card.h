@@ -17,6 +17,12 @@ public:
 	// カード移動
 	void CardMove();
 
+	// カード選択
+	void CardSelect();
+
+	// カードの処理判定
+	void CardProcessing();
+
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
@@ -36,6 +42,9 @@ private:
 		float moveSpeed;
 
 		bool isOpen;
+
+		// カート選択
+		bool isSelect = false;
 
 		int frontTextureIndex;
 
