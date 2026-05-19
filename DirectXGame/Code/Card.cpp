@@ -39,7 +39,7 @@ void Card::Initialize() {
 		cards_[i].position = { -300.0f, 300.0f };
 
 		// 定位置
-		cards_[i].targetPos = { 150.0f + i * 220.0f, 300.0f };
+		cards_[i].targetPos = { 50.0f + i * 160.0f, 300.0f };
 
 		// 移動速度
 		cards_[i].moveSpeed = 8.0f;
@@ -52,6 +52,9 @@ void Card::Initialize() {
 void Card::Update() { 
 	// カード移動
 	CardMove();
+
+	// 行列の更新
+	worldTransfrom_.UpdateMatrix();
 }
 
 void Card::Draw() {
@@ -71,18 +74,44 @@ void Card::Draw() {
 
 // カード移動
 void Card::CardMove() {
+	// 全カード到着チェック
+	bool allOpen = true;
+
 	for (int i = 0; i < CARD_NUM; i++) {
-		// 左から移動
-		if (!cards_[i].isOpen) {
-			cards_[i].position.x += cards_[i].moveSpeed;
-			// 到着したら表カードへ変更
-			if (cards_[i].position.x >= cards_[i].targetPos.x) {
-				cards_[i].position.x = cards_[i].targetPos.x;
-				cards_[i].sprite->SetTextureHandle(textureHandle_[cards_[i].frontTextureIndex]);
-				cards_[i].isOpen = true;
+		// 最初の到着
+		if (!isAllMove_) {
+			// 左から移動
+			if (!cards_[i].isOpen) {
+				cards_[i].position.x += cards_[i].moveSpeed;
+				// 到着したら表カードへ変更
+				if (cards_[i].position.x >= cards_[i].targetPos.x) {
+					cards_[i].position.x = cards_[i].targetPos.x;
+					cards_[i].sprite->SetTextureHandle(textureHandle_[cards_[i].frontTextureIndex]);
+					cards_[i].isOpen = true;
+				}
+			}
+			// 全カード到着確認
+			if (!cards_[i].isOpen) {
+				allOpen = false;
 			}
 		}
-		// 位置反映
+	}
+	// 全部到着したら次のフェーズ
+	if (allOpen) {
+		isAllMove_ = true;
+	}
+	// 左下へ移動
+	if (isAllMove_) {
+		for (int i = 0; i < CARD_NUM; i++) {
+			// 手札位置
+			Vector2 handPos = { 0.0f + i * 150.0f, 470.0 };
+			// 徐々に移動
+			cards_[i].position.x += (handPos.x - cards_[i].position.x) * 0.1f;
+			cards_[i].position.y += (handPos.y - cards_[i].position.y) * 0.1f;
+		}
+	}
+	// スプライト反映
+	for (int i = 0; i < CARD_NUM; i++) {
 		cards_[i].sprite->SetPosition(cards_[i].position);
 	}
 }

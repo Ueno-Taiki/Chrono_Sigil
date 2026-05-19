@@ -47,5 +47,8 @@ private:
 
 	// テクスチャハンドル
 	uint32_t textureHandle_[4];
+
+	// 最終到着位置
+	bool isAllMove_ = false;
 };
 
