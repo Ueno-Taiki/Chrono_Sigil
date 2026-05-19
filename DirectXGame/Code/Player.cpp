@@ -44,27 +44,27 @@ void Player::Draw(KamataEngine::Camera& camera) {
 }
 
 void Player::LifeDraw() {
-	if (playerLife == 5) {
+	if (playerLife_ == 5) {
 		sprite_[0]->Draw();
 		sprite_[1]->Draw();
 	}
-	if (playerLife == 4) {
+	if (playerLife_ == 4) {
 		sprite_[0]->Draw();
 
 	}
-	if (playerLife == 3) {
+	if (playerLife_ == 3) {
 		sprite_[0]->Draw();
 
 	}
-	if (playerLife == 2) {
+	if (playerLife_ == 2) {
 		sprite_[0]->Draw();
 
 	}
-	if (playerLife == 1) {
+	if (playerLife_ == 1) {
 		sprite_[0]->Draw();
 
 	}
-	if (playerLife == 0) {
+	if (playerLife_ == 0) {
 		sprite_[0]->Draw();
 
 	}

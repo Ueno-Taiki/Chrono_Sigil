@@ -21,8 +21,22 @@ public:
 	//攻撃受ける
 	void Hit(int damage);
 
+	//========================
+	// Getter
+	//========================
+
 	// デスフラグのgetter
 	bool isDead() const { return isDead_; }
+
+	// ライフ取得
+	float GetLife() const { return enemyLife_; }
+
+	//========================
+	// Setter
+	//========================
+
+	// ライフ設定
+	void SetLife(float life);
 
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
@@ -41,7 +55,7 @@ private:
 	KamataEngine::Sprite* sprite_[2];
 
 	// 敵のライフ
-	float enemyLife = 5.0f;
+	float enemyLife_ = 5.0f;
 
 	// デスフラグ
 	bool isDead_ = false;

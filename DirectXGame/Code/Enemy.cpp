@@ -45,27 +45,27 @@ void Enemy::Draw(KamataEngine::Camera& camera) {
 
 // ライフ描画
 void Enemy::LifeDraw() {
-	if (enemyLife == 5) {
+	if (enemyLife_ == 5) {
 		sprite_[0]->Draw();
 		sprite_[1]->Draw();
 	}
-	if (enemyLife == 4) {
+	if (enemyLife_ == 4) {
 		sprite_[0]->Draw();
 
 	}
-	if (enemyLife == 3) {
+	if (enemyLife_ == 3) {
 		sprite_[0]->Draw();
 
 	}
-	if (enemyLife == 2) {
+	if (enemyLife_ == 2) {
 		sprite_[0]->Draw();
 
 	}
-	if (enemyLife == 1) {
+	if (enemyLife_ == 1) {
 		sprite_[0]->Draw();
 
 	}
-	if (enemyLife == 0) {
+	if (enemyLife_ == 0) {
 		sprite_[0]->Draw();
 
 	}
@@ -73,10 +73,10 @@ void Enemy::LifeDraw() {
 
 // 攻撃を受ける
 void Enemy::Hit(int damage) {
-	enemyLife = (enemyLife - damage);
+	enemyLife_ = (enemyLife_ - damage);
 
 	// ライフが0の時死ぬ
-	if (enemyLife == 0) {
+	if (enemyLife_ == 0) {
 		isDead_ = true;
 	}
 }
