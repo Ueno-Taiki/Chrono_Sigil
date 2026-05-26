@@ -1,42 +1,23 @@
 #pragma once
 #include "KamataEngine.h"
+#include "Character.h"
 
 // 敵を処理するクラス
-class Enemy {
+class Enemy : public Character {
 public:
 	~Enemy();
 
 	// 初期化
-	void Initialize(KamataEngine::Model* model, const KamataEngine::Vector3& position);
+	void Initialize(KamataEngine::Model* model,const KamataEngine::Vector3& position) override;
 
 	// 更新
-	void Update();
+	void Update() override;
 
 	// 描画
-	void Draw(KamataEngine::Camera& camera);
+	void Draw(KamataEngine::Camera& camera) override;
 
 	// ライフ描画
-	void LifeDraw();
-
-	//攻撃受ける
-	void Hit(int damage);
-
-	//========================
-	// Getter
-	//========================
-
-	// デスフラグのgetter
-	bool isDead() const { return isDead_; }
-
-	// ライフ取得
-	float GetLife() const { return enemyLife_; }
-
-	//========================
-	// Setter
-	//========================
-
-	// ライフ設定
-	void SetLife(float life);
+	void LifeDraw() override;
 
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;

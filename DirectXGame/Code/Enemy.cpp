@@ -29,6 +29,9 @@ void Enemy::Initialize(KamataEngine::Model* model, const KamataEngine::Vector3& 
 	sprite_[0] = Sprite::Create(textureHandle_[0], { 1020, 80 });
 	sprite_[1] = Sprite::Create(textureHandle_[1], { 1028, 88 });
 
+	// 基底クラス呼ぶ
+	Character::Initialize(model, position);
+
 	// ワールト座標の初期化
 	worldTransfrom_.Initialize();
 }
@@ -68,15 +71,5 @@ void Enemy::LifeDraw() {
 	if (enemyLife_ == 0) {
 		sprite_[0]->Draw();
 
-	}
-}
-
-// 攻撃を受ける
-void Enemy::Hit(int damage) {
-	enemyLife_ = (enemyLife_ - damage);
-
-	// ライフが0の時死ぬ
-	if (enemyLife_ == 0) {
-		isDead_ = true;
 	}
 }

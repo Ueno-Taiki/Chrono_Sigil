@@ -1,7 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "KamataEngine.h"
+#include "Character.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Skydome.h"
@@ -39,13 +41,16 @@ private:
 	// カメラ
 	KamataEngine::Camera camera_;
 
+	// キャラクター
+	std::vector<std::unique_ptr<Character>> characters_;
+	
 	// プレイヤー
-	std::unique_ptr<Player> player_;
+	Player* player_ = nullptr;
 	// プレイヤーモデル
 	std::unique_ptr<KamataEngine::Model> modelPlayer_;
 
 	// 敵
-	std::unique_ptr<Enemy> enemy_;
+	Enemy* enemy_ = nullptr;
 	// 敵モデル
 	std::unique_ptr<KamataEngine::Model> modelEnemy_;
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "KamataEngine.h"
+#include "Character.h"
 
 enum class AttackType {
 	Normal,
@@ -9,21 +10,21 @@ enum class AttackType {
 class UI;
 
 // プレイヤーの処理するクラス
-class Player {
+class Player : public Character {
 public:
 	~Player();
 
 	// 初期化
-	void Initialize(KamataEngine::Model* model, const KamataEngine::Vector3& position);
+	void Initialize(KamataEngine::Model* model,const KamataEngine::Vector3& position) override;
 
 	// 更新
-	void Update();
+	void Update() override;
 
 	// 描画
-	void Draw(KamataEngine::Camera& camera);
+	void Draw(KamataEngine::Camera& camera) override;
 
 	// ライフ描画
-	void LifeDraw();
+	void LifeDraw() override;
 
 	// 攻撃
 	void Attack();
@@ -34,18 +35,9 @@ public:
 	// スキル攻撃の判定
 	void SkillAttackHit();
 
-	// 攻撃受ける
-	void Hit(int damage);
-
 	//--------------------------------
 	// Getter
 	//--------------------------------
-
-	// ライフ取得
-	float GetLife() const { return playerLife_; }
-
-	// デスフラグのgetter
-	bool isDead() const { return isDead_; }
 
 	// 攻撃タイプ取得
 	AttackType GetAttackType() const { return attackType_; }
@@ -56,9 +48,6 @@ public:
 
 	// 攻撃のsetter
 	void SetAttackType(AttackType type) { attackType_ = type; }
-
-	// ライフ設定
-	void SetLife(float life) { playerLife_ = life; }
 
 private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;

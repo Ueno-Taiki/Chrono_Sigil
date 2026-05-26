@@ -29,6 +29,9 @@ void Player::Initialize(KamataEngine::Model* model, const KamataEngine::Vector3&
 	sprite_[0] = Sprite::Create(textureHandle_[0], { 70, 300 });
 	sprite_[1] = Sprite::Create(textureHandle_[1], { 78, 308 });
 
+	// 基底クラス呼ぶ
+	Character::Initialize(model, position);
+
 	// ワールト座標の初期化
 	worldTransfrom_.Initialize();
 }

@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Code\Card.cpp" />
+    <ClCompile Include="Code\Character.cpp" />
     <ClCompile Include="Code\Enemy.cpp" />
     <ClCompile Include="Code\GameClear.cpp" />
     <ClCompile Include="Code\GameOver.cpp" />
@@ -265,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Card.h" />
+    <ClInclude Include="Code\Character.h" />
     <ClInclude Include="Code\Enemy.h" />
     <ClInclude Include="Code\GameClear.h" />
     <ClInclude Include="Code\GameOver.h" />

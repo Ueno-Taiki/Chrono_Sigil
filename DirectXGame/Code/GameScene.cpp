@@ -21,18 +21,26 @@ void GameScene::Initialize() {
 	BGM = audio_->LoadWave("BGM/BGM.wav");
 
 	// プレイヤーの生成
-	player_ = std::make_unique<Player>();
+	auto player = std::make_unique<Player>();
 	// プレイヤーの座標
 	Vector3 playerPositon = { -18, 0, -20 };
 	// プレイヤーの初期化
-	player_->Initialize(modelPlayer_.get(), playerPositon);
+	player->Initialize(modelPlayer_.get(), playerPositon);
+	// ポインタ保持
+	player_ = player.get();
+	// vectorに追加
+	characters_.push_back(std::move(player));
 
 	// 敵の生成
-	enemy_ = std::make_unique<Enemy>();
+	auto enemy = std::make_unique<Enemy>();
 	// 敵の座標
 	Vector3 enemyPositon = { 15, 0, -20 };
 	// 敵の初期化
-	enemy_->Initialize(modelEnemy_.get(), enemyPositon);
+	enemy->Initialize(modelEnemy_.get(), enemyPositon);
+	// ポインタ保持
+	enemy_ = enemy.get();
+	// vectorに追加
+	characters_.push_back(std::move(enemy));
 
 	// カードの生成
 	card_ = std::make_unique<Card>();
@@ -61,11 +69,10 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-	// プレイヤー更新
-	player_->Update();
-
-	// 敵更新
-	enemy_->Update();
+	// キャラクターの更新
+	for (auto& character : characters_) {
+		character->Update();
+	}
 
 	// カード更新
 	card_->Update();
@@ -82,12 +89,12 @@ void GameScene::Update() {
 	}
 
 	//プレイヤーが死んだ時
-	if (player_->isDead()) {
+	if (player_->IsDead()) {
 		finished_ = true;
 	}
 
 	//敵が死んだ時
-	if (enemy_->isDead()) {
+	if (enemy_->IsDead()) {
 		cleared_ = true;
 	}
 
@@ -113,6 +120,11 @@ void GameScene::Draw() {
 	Model::PreDraw(dxCommon->GetCommandList());
 
 	// ここに3Dモデルインスタンスの描画処理を記述する
+
+	// キャラクター描画
+	for (auto& character : characters_) {
+		character->Draw(camera_);
+	}
 
 	// プレイヤー描画
 	player_->Draw(camera_);
