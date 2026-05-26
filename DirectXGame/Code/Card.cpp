@@ -67,6 +67,9 @@ void Card::Draw() {
 	Sprite::PreDraw(commandList);
 	// カードの描画
 	for (int i = 0; i < CARD_NUM; i++) {
+		if (cards_[i].isDead) {
+			continue;
+		}
 		cards_[i].sprite->Draw();
 	}
 	// プライト描画後処理
@@ -108,15 +111,37 @@ void Card::CardMove() {
 	// 左下へ移動
 	if (isAllMove_) {
 		for (int i = 0; i < CARD_NUM; i++) {
-			// 手札位置
-			Vector2 handPos = { 0.0f + i * 150.0f, 470.0 };
-			// 選択中なら少し上へ
-			if (cards_[i].isSelect) {
-				handPos.y -= 30.0f;
+			// 消えたカードは処理しない
+			if (cards_[i].isDead) {
+				continue;
 			}
-			// 徐々に移動
-			cards_[i].position.x += (handPos.x - cards_[i].position.x) * 0.1f;
-			cards_[i].position.y += (handPos.y - cards_[i].position.y) * 0.1f;
+
+			//	中央へ移動するカード
+			if (cards_[i].isCenter) {
+				Vector2 centerPos = { 565.0f, 135.0f };
+
+				cards_[i].position.x += (centerPos.x - cards_[i].position.x) * 0.1f;
+				cards_[i].position.y += (centerPos.y - cards_[i].position.y) * 0.1f;
+
+				// 中央到着で消える
+				float dx = centerPos.x - cards_[i].position.x;
+				float dy = centerPos.y - cards_[i].position.y;
+
+				if (abs(dx) < 1.0f && abs(dy) < 1.0f) {
+					cards_[i].isDead = true;
+				}
+			}
+			// 通常カード
+			else {
+				Vector2 handPos = { 0.0f + i * 150.0f, 470.0f };
+
+				// 選択中なら少し上
+				if (cards_[i].isSelect) {
+					handPos.y -= 30.0f;
+				}
+				cards_[i].position.x += (handPos.x - cards_[i].position.x) * 0.1f;
+				cards_[i].position.y += (handPos.y - cards_[i].position.y) * 0.1f;
+			}
 		}
 	}
 
@@ -150,6 +175,15 @@ void Card::CardSelect() {
 			}
 			else {
 				cards_[i].isSelect = false;
+			}
+		}
+	}
+
+	// ENTERキー
+	if (input_->TriggerKey(DIK_RETURN)) {
+		for (int i = 0; i < CARD_NUM; i++) {
+			if (cards_[i].isSelect) {
+				cards_[i].isCenter = true;
 			}
 		}
 	}

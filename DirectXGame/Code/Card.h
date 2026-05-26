@@ -46,6 +46,12 @@ private:
 		// カート選択
 		bool isSelect = false;
 
+		// 中央移動フラグ
+		bool isCenter = false;
+
+		// 消えるフラグ
+		bool isDead = false;
+
 		int frontTextureIndex;
 
 		KamataEngine::Sprite* sprite;
