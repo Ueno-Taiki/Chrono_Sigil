@@ -110,14 +110,18 @@ void Card::CardMove() {
 
 	// 左下へ移動
 	if (isAllMove_) {
+		int aliveIndex = 0; // 生存カード用の並び番号
+
 		for (int i = 0; i < CARD_NUM; i++) {
+
 			// 消えたカードは処理しない
 			if (cards_[i].isDead) {
 				continue;
 			}
 
-			//	中央へ移動するカード
+			// 中央へ移動するカード
 			if (cards_[i].isCenter) {
+
 				Vector2 centerPos = { 565.0f, 135.0f };
 
 				cards_[i].position.x += (centerPos.x - cards_[i].position.x) * 0.1f;
@@ -129,11 +133,13 @@ void Card::CardMove() {
 
 				if (abs(dx) < 1.0f && abs(dy) < 1.0f) {
 					cards_[i].isDead = true;
+					cards_[i].isCenter = false;
 				}
 			}
 			// 通常カード
 			else {
-				Vector2 handPos = { 0.0f + i * 150.0f, 470.0f };
+				// aliveIndex を使う
+				Vector2 handPos = { 0.0f + aliveIndex * 150.0f, 470.0f };
 
 				// 選択中なら少し上
 				if (cards_[i].isSelect) {
@@ -141,6 +147,7 @@ void Card::CardMove() {
 				}
 				cards_[i].position.x += (handPos.x - cards_[i].position.x) * 0.1f;
 				cards_[i].position.y += (handPos.y - cards_[i].position.y) * 0.1f;
+				aliveIndex++; // 生存カードだけ増やす
 			}
 		}
 	}
@@ -188,4 +195,3 @@ void Card::CardSelect() {
 		}
 	}
 }
-
